@@ -65,3 +65,17 @@ That's it! The Docker instance will help you get up and running quickly while al
 ## Questions
 
 If you have any issues or questions, reach out to us on [Discord](https://discord.com/invite/payload) or start a [GitHub discussion](https://github.com/payloadcms/payload/discussions).
+
+---
+
+## Prompt para resumen de avance del proyecto
+
+> Resume todo lo que hemos hecho hasta la fecha en este proyecto, incluyendo:
+>
+> - Estructura y tecnologías usadas
+> - Decisiones técnicas importantes
+> - Componentes y convertidores implementados
+> - Problemas resueltos y cómo se solucionaron
+> - Recomendaciones y siguientes pasos
+>
+> El resumen debe ser detallado, claro y útil para cualquier persona (o IA) que retome el proyecto, y debe servir como base para la documentación interna.

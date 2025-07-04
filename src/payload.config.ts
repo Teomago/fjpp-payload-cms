@@ -8,7 +8,7 @@ import { fileURLToPath } from 'url'
 import sharp from 'sharp'
 
 import { Users } from './collections/Users'
-import { Media } from './collections/Media'
+import { collections } from './collections'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -20,7 +20,17 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media],
+  collections,
+  cors: [
+    'http://localhost:3000',
+    'http://localhost:3001', // frontend local (HeroUI + Next.js)
+    'http://127.0.0.1:3001', // (opcional)
+  ],
+  csrf: [
+    'http://localhost:3000',
+    'http://localhost:3001', // frontend local (HeroUI + Next.js)
+    'http://127.0.0.1:3001', // (opcional)
+  ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
@@ -32,6 +42,63 @@ export default buildConfig({
     },
   }),
   sharp,
+  globals: [
+    {
+      slug: 'site-settings',
+      fields: [
+        {
+          name: 'siteTitle',
+          type: 'text',
+          required: true,
+        },
+        {
+          name: 'siteDescription',
+          type: 'textarea',
+          required: true,
+        },
+        {
+          name: 'logo',
+          label: 'Logo del sitio',
+          type: 'upload',
+          relationTo: 'media',
+          required: false,
+        },
+        {
+          name: 'favicon',
+          label: 'Favicon del sitio',
+          type: 'upload',
+          relationTo: 'media',
+          required: false,
+        },
+        {
+          name: 'contactEmail',
+          type: 'email',
+          required: true,
+        },
+        {
+          name: 'contactPhone',
+          type: 'text',
+          required: false,
+        },
+        {
+          name: 'socialMediaLinks',
+          type: 'array',
+          fields: [
+            {
+              name: 'platform',
+              type: 'text',
+              required: true,
+            },
+            {
+              name: 'url',
+              type: 'text',
+              required: true,
+            },
+          ],
+        },
+      ],
+    },
+  ],
   plugins: [
     payloadCloudPlugin(),
     // storage-adapter-placeholder

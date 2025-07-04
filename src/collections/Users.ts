@@ -5,9 +5,27 @@ export const Users: CollectionConfig = {
   admin: {
     useAsTitle: 'email',
   },
-  auth: true,
+  auth: {
+    useAPIKey: true,
+  },
   fields: [
-    // Email added by default
-    // Add more fields as needed
+    {
+      name: 'role',
+      type: 'select',
+      options: [
+        { label: 'Admin', value: 'admin' },
+        { label: 'Editor', value: 'editor' },
+        { label: 'Teacher', value: 'teacher' },
+        { label: 'Non-premium', value: 'non-premium' },
+        { label: 'Student', value: 'student' },
+      ],
+    },
+    {
+      name: 'foto',
+      label: 'Foto de perfil',
+      type: 'upload',
+      relationTo: 'media',
+      required: false,
+    },
   ],
 }
